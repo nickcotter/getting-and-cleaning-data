@@ -57,4 +57,9 @@ names(all_data) <- gsub("Acc", "Accelerometer", names(all_data))
 names(all_data) <- gsub("Gyro", "Gyroscope", names(all_data))
 
 
-# 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+# 5. From the data set in step 4, creates a second, independent tidy data set 
+# with the average of each variable for each activity and each subject.
+
+melted <- melt(all_data, id=c("Subject","Activity"))
+tidy <- dcast(melted, Subject+Activity ~ variable, mean)
+write.csv(tidy, "./tidy.csv", row.names=FALSE)
