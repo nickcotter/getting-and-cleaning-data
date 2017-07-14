@@ -47,7 +47,14 @@ all_data <- mutate(all_data, Activity=activity_labels[Activity])
 
 # 4. Appropriately labels the data set with descriptive variable names.
 
-
+names(all_data) <- gsub("^t", "Time", names(all_data))
+names(all_data) <- gsub("^f", "Frequency", names(all_data))
+names(all_data) <- gsub("BodyBody", "Body", names(all_data))
+names(all_data) <- gsub("-mean\\(\\)", "Mean", names(all_data))
+names(all_data) <- gsub("-std\\(\\)", "StandardDeviation", names(all_data))
+names(all_data) <- gsub("-meanFreq\\(\\)", "MeanFrequency", names(all_data))
+names(all_data) <- gsub("Acc", "Accelerometer", names(all_data))
+names(all_data) <- gsub("Gyro", "Gyroscope", names(all_data))
 
 
 # 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
