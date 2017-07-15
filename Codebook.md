@@ -1,12 +1,12 @@
 #### Codebook
 Generated on 
-2017-07-15 14:40:06
+2017-07-15 14:50:48
 
 
 
 #### Process:
-Merge the training and the test sets to create one data set.
-    Load activity & feature labels, and raw X/y/subject train and test data sets
+#####Merge the training and the test sets to create one data set.#####
+Load activity & feature labels, and raw X/y/subject train and test data sets
 
 
 ```r
@@ -20,7 +20,7 @@ subject_train <- read.table("./UCI HAR Dataset/train/subject_train.txt")
 subject_test <- read.table("./UCI HAR Dataset/test/subject_test.txt")
 ```
 
-    Apply feature labels and names for activity and subject ids
+apply feature labels and names for activity and subject ids
 
 
 ```r
@@ -32,7 +32,7 @@ names(subject_train) = "Subject"
 names(subject_test) = "Subject"
 ```
 
-    combine test and train data into single data frame
+combine test and train data into single data frame
 
 
 ```r
@@ -41,22 +41,22 @@ train_data <- cbind(as.data.table(subject_train), y_train, X_train)
 all_data = rbind(test_data, train_data)
 ```
 
-Extract only the measurements on the mean and standard deviation for each measurement.
-    extract features containing mean and std only
+#####Extract only the measurements on the mean and standard deviation for each measurement.#####
+extract features containing mean and std only
 
 
 ```r
 required_features <- grepl("mean|std", features)
 ```
 
-    keep only subject, activity and required features in all_data
+keep only subject, activity and required features in all_data
 
 
 ```r
 all_data = all_data[,c(TRUE, TRUE, required_features), with=FALSE]
 ```
 
-Use descriptive activity names to name the activities in the data set
+#####Use descriptive activity names to name the activities in the data set#####
     replace Activity column contents (ids) with the matching labels
 
 
@@ -64,7 +64,7 @@ Use descriptive activity names to name the activities in the data set
 all_data <- mutate(all_data, Activity=activity_labels[Activity])
 ```
 
-Appropriately label the data set with descriptive variable names.
+#####Appropriately label the data set with descriptive variable names.#####
 expand various abbreviated feature names for clarity
 
 
@@ -79,23 +79,22 @@ names(all_data) <- gsub("Acc", "Accelerometer", names(all_data))
 names(all_data) <- gsub("Gyro", "Gyroscope", names(all_data))
 ```
 
-Create a second, independent tidy data set with the average of each variable for 
-each activity and each subject.
-    turn all_data into long form, keyed by subject and activity
+#####Create a second, independent tidy data set with the average of each variable for each activity and each subject.#####
+turn all_data into long form, keyed by subject and activity
 
 
 ```r
 melted <- melt(all_data, id=c("Subject","Activity"))
 ```
 
-    turn back into wide form, with mean of each variable
+turn back into wide form, with mean of each variable
 
 
 ```r
 tidy <- dcast(melted, Subject+Activity ~ variable, mean)
 ```
 
-    write the tidy data to a csv file
+write the tidy data to a csv file
 
 
 ```r
