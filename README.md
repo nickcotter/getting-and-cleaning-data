@@ -14,7 +14,12 @@ This is the repository for my work on the Coursera Data Science [Getting And Cle
 
 #### Prepare The Environment ####
 
-Source the R script [setup.R](setup.R). This will prepare the R environment with the required libraries and download the raw data.
+Source the R script [setup.R](setup.R). This will prepare the R environment with the required libraries and download the raw data. The required libraries are:
+
+        data.table
+        reshape2
+        dplyr
+        knitr (for codebook)
 
 #### Create The Tidy Data ####
 
@@ -23,11 +28,7 @@ Source the R scripts [run_analysis.R](run_analysis.R). This will produce a file 
 
 #### Codebook ####
 
-The [Codebook](Codebook.md) was created using [knitr](https://yihui.name/knitr/) from the script [run_analysis.R](run_analysis.R). To generate it run
-
-        knitr::spin("run_analysis.R")
-        
-This will produce the tidy data and the Codebook.
+The [Codebook](Codebook.md) was created using [knitr](https://yihui.name/knitr/) from the script [run_analysis.R](run_analysis.R). To generate it run the R script [make_codebook.R](make_codebook.R). This will produce the tidy data and the Codebook.
 
 
 

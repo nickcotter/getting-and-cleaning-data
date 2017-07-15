@@ -1,7 +1,15 @@
+#' #### Codebook
+#' Generated on 
+{{now()}}
+
+
 #+ setup, include=FALSE
 require("data.table")
 require("reshape2")
 require("dplyr")
+require("knitr")
+
+#' #### Process:
 
 #' Merge the training and the test sets to create one data set.
 
@@ -61,5 +69,16 @@ tidy <- dcast(melted, Subject+Activity ~ variable, mean)
 #'     write the tidy data to a csv file
 write.csv(tidy, "./tidy.csv", row.names=FALSE)
 
-#' Tidy Data Description
-knitr::kable(names(tidy), caption = "Tidy Data Variables", col.names=c("Variable"))
+#' #### Tidy Data Description:
+
+#+ create variable descriptions, include=FALSE
+variables <- as.data.frame(names(tidy), col.names=c("variable")) %>% mutate(description="Mean of feature as described in raw data description")
+variables[1,2] <- "ID of subject"
+variables[2,2] <- "Label for activity"
+
+#+ Variables
+knitr::kable(variables, caption = "Tidy Data Variables", col.names=c("Variable", "Description"))
+
+#' #### Session info:
+#+ show-sessionInfo
+sessionInfo()

@@ -12,6 +12,10 @@ if (!require("dplyr")) {
   install.packages("dplyr")
 }
 
+if (!require("knitr")) {
+        install.packages("knitr")
+}
+
 if(!file.exists("Dataset.zip")) {
         download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", "Dataset.zip")
 }
