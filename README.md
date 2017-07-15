@@ -21,6 +21,11 @@ Source the R script [setup.R](setup.R). This will prepare the R environment with
 Source the R scripts [run_analysis.R](run_analysis.R). This will produce a file called tidy.csv
 
 
+#### Codebook ####
+
+The [Codebook](Codebook.md) was created using [knitr](https://yihui.name/knitr/) from the script [run_analysis.R](run_analysis.R).
+
+
 
 
 
