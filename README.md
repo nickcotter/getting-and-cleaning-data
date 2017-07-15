@@ -23,7 +23,11 @@ Source the R scripts [run_analysis.R](run_analysis.R). This will produce a file 
 
 #### Codebook ####
 
-The [Codebook](Codebook.md) was created using [knitr](https://yihui.name/knitr/) from the script [run_analysis.R](run_analysis.R).
+The [Codebook](Codebook.md) was created using [knitr](https://yihui.name/knitr/) from the script [run_analysis.R](run_analysis.R). To generate it run
+
+        knitr::spin("run_analysis.R")
+        
+This will produce the tidy data and the Codebook.
 
 
 
